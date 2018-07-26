@@ -5,8 +5,8 @@ const isDev = !process.env.PORT
 
 express()
   .use((req, res, next) => {
-    console.log(!isDev, req.protocol === 'http');
-    if (!isDev && req.protocol === 'http') {
+    console.log(!isDev, req.connection.encrypted);
+    if (!isDev && !req.connection.encrypted) {
       return res.redirect(301, 'https://' + req.headers.host + req.originalUrl)
     }
     next()
