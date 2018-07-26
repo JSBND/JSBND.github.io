@@ -1,1 +1,1 @@
-<? print(get_file_contents('index.html')) ?>
+<? print(file_get_contents('index.html')) ?>
