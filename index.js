@@ -1,16 +1,8 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-const isDev = !process.env.PORT
 
 express()
-  .use((req, res, next) => {
-    console.log(!isDev, req.connection.encrypted);
-    if (!isDev && !req.connection.encrypted) {
-      return res.redirect(301, 'https://' + req.headers.host + req.originalUrl)
-    }
-    next()
-  })
   .use((req, res, next) => {
     if (req.headers.host.slice(0, 4) === 'www.') {
       const newHost = req.headers.host.slice(4)
